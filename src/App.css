@@ -1,4 +1,6 @@
-html, body, .root {
+html,
+body,
+.root {
   height: 100%;
 }
 
@@ -6,26 +8,50 @@ body {
   line-height: 1.5;
 }
 
-body, .app {
-  background: white;
+/* body,
+.app {
+
+} */
+
+body {
+  background-image: url(./Components/Require/pattern-randomized.svg);
 }
 
+.topTitle {
+  background-image: url(./Components/Require/Cup.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+}
 /* main page */
 
 .list-books-title {
+  display: grid;
+
+  grid-template-columns: 90% 10%;
+  width: 100%;
   padding: 10px 0;
-  background: #2e7c31;
+  background: #880088;
   text-align: center;
+  font-weight: bold;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  z-index: 5;
+  /* display: flex; */
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
 }
 
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white;
+  color: #880088;
 }
 
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 4rem 0 80px;
   flex: 1;
 }
 
@@ -41,6 +67,10 @@ body, .app {
 
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  color: #880088;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  
 }
 
 .bookshelf-books {
@@ -57,37 +87,41 @@ body, .app {
   display: block;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background: #2e7d32;
-  background-image: url('./icons/add.svg');
+  border-radius: 5%;
+  background: #880088;
+  background-image: url("./icons/add.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 28px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-size: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
   outline: 0;
 }
 
 .open-search button:hover {
-  background-color: rgb(0, 102, 0);
+  background-color: rgba(131, 5, 43, 0.7);
 }
-
 
 /* search page */
 
 .search-books-bar {
+  /* display: grid;
+  grid-template-columns: 10% 60% 30%; */
+
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 5;
   display: flex;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
 }
 
 .search-books-input-wrapper {
-  flex: 1;
-  background: #e9e;
+  flex: 3;
+  background: #880088;
+  border: none;
+  outline: none;
 }
 
 .search-books-bar input {
@@ -96,6 +130,8 @@ body, .app {
   font-size: 1.25em;
   border: none;
   outline: none;
+  background-color: #880088;
+  color: #ffffff;
 }
 
 .close-search {
@@ -104,17 +140,22 @@ body, .app {
   left: 15px;
   width: 50px;
   height: 53px;
-  background-image: url('./icons/arrow-back.svg');
+  background-image: url("./icons/arrow-back.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 28px;
   font-size: 0;
   border: none;
   outline: none;
+  background-color: #880088;
+}
+.close-search :hover {
+  background-color: #880088;
+  cursor: pointer;
 }
 
 button:active {
-  border: red;
+  border: 880088;
   outline: none;
 }
 
@@ -145,6 +186,7 @@ button:active {
 .book-title,
 .book-authors {
   font-size: 0.8em;
+  color: #880088;
 }
 
 .book-title {
@@ -152,7 +194,7 @@ button:active {
 }
 
 .book-authors {
-  color: #999;
+  color: #e078e0;
 }
 
 .book-top {
@@ -166,15 +208,15 @@ button:active {
   position: absolute;
   right: 0;
   bottom: -10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #60ac5d;
-  background-image: url('./icons/arrow-drop-down.svg');
+  width: 25px;
+  height: 25px;
+  border-radius: 5%;
+  background: #880088;
+  background-image: url("./icons/arrow-drop-down.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .book-shelf-changer select {
@@ -182,17 +224,117 @@ button:active {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  background: rgba(253, 253, 253, 0.6);
+  color: rgba(131, 5, 43, 0.7);
+  border-radius: 0.5rem;
 }
 
 /* book cover */
 
 .book-cover {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
+  transition: all 0.2s ease-in-out;
+}
+
+.book-top :hover {
+  transform: scale(1.1);
+  color: rgba(131, 5, 43, 0.7);
 }
 
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.link {
+  display: block;
+  top: 0px;
+  right: 0;
+  width: 12rem;
+  height: 53px;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  color: #ffc2ff;
+  background: #880088;
+  cursor: pointer;
+}
+
+.Slink {
+  display: block;
+  top: 0px;
+  right: 0;
+  width: 12rem;
+  height: 53px;
+  padding: 15px 10px;
+  font-size: .75em;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  color: #ffc2ff;
+  background: #880088;
+  cursor: pointer;
+}
+
+
+
+.dropdown.active > .link,
+link:hover {
+  color: #880088;
+}
+
+.dropdown {
+  position: relative;
+  right: 0;
+  border: none;
+  outline: none;
+}
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: clac(100%+0.25rem);
+  background-color: #9a9999;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease-in-out, transform150ms ease-in-out;
+  border: none;
+  outline: none;
+  overflow-y: auto;
+  height: 30vh;
+}
+
+.dropdown.active > .link + .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.listsearch {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+.listsearch:hover {
+  background-color: #f1356d;
+}
+
+.titleHeader {
+  display: grid;
+  grid-template-columns: 70% 30%;
+
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
 }
