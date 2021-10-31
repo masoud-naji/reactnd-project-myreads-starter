@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as consts from "../BooksAPI";
-import ShelfChanger from "./ShelfChanger";
+import Shelf from "./shelf";
 
 const SearchBook = () => {
   const [query, setquery] = useState("");
@@ -27,6 +27,9 @@ const SearchBook = () => {
     [query]
   );
 
+  const ChangeHandler = e => {
+    console.log("Changed " + e);
+  };
 
   const SearchHandler = e => {
     const SearchItem = e.target.value;
@@ -50,7 +53,6 @@ const SearchBook = () => {
             onChange={SearchHandler}
           />
         </div>
-
 
         <div className="selectbook">
           <select className="link" onClick={e => setquery(e.target.value)}>
@@ -83,7 +85,7 @@ const SearchBook = () => {
                           : ""
                       }}
                     />
-                    <ShelfChanger />
+                    <Shelf change={ChangeHandler} />
                   </div>
 
                   <div className="book-title">{book.title}</div>

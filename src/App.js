@@ -5,6 +5,7 @@ import SearchBook from "./Components/Search";
 import Currently from "./Components/Currently";
 import WantRead from "./Components/WantRead";
 import ReadBook from "./Components/Read";
+import AllBook from "./Components/All";
 import { Link, Route, Switch } from "react-router-dom";
 
 const BooksApp = () => {
@@ -40,6 +41,9 @@ const BooksApp = () => {
                   <option className="listsearch" key="4" value="ReadCat">
                     Read
                   </option>
+                  <option className="listsearch" key="5" value="None">
+                    No Category
+                  </option>
                 </select>
               </div>
             </div>
@@ -50,10 +54,10 @@ const BooksApp = () => {
                 {Category === "ReadCat" && <ReadBook />}
                 {Category === "Category" && (
                   <section>
-                    {" "}
                     <Currently /> <WantRead /> <ReadBook />{" "}
                   </section>
                 )}
+                {Category === "None" && <AllBook />}
               </div>
             </div>
             <div className="open-search">

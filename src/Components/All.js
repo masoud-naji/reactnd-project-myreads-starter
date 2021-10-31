@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Shelf from "./shelf";
 import * as consts from "../BooksAPI";
-
-const WantRead = () => {
+import Shelf from "./shelf";
+const AllBook = () => {
   const [AllBooks, setAllBooks] = useState([]);
   const [shelfUpdate, setShelfUpdtae] = useState(false);
 
@@ -15,12 +14,13 @@ const WantRead = () => {
     setShelfUpdtae(true);
  
   };
+
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">Want Read</h2>
+      <h2 className="bookshelf-title">All Books </h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {AllBooks.filter(book => book.shelf === "wantToRead").map(book => (
+          {AllBooks.map(book => (
             <li key={book.id}>
               <div className="book">
                 <div className="book-top">
@@ -32,7 +32,8 @@ const WantRead = () => {
                       backgroundImage: `url("${book.imageLinks.thumbnail}")`
                     }}
                   />
-                  <Shelf change={ChangeHandler} book={book}  />
+
+                  <Shelf change={ChangeHandler} book={book} />
                 </div>
 
                 <div className="book-title">{book.title}</div>
@@ -47,4 +48,4 @@ const WantRead = () => {
   );
 };
 
-export default WantRead;
+export default AllBook;

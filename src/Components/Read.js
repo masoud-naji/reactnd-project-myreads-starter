@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import ShelfChanger from "./ShelfChanger";
 import * as consts from "../BooksAPI";
-import Test from "../Test";
+import Shelf from "./shelf";
 const ReadBook = () => {
   const [AllBooks, setAllBooks] = useState([]);
-  // const [shelf, setShelf] = useState([]);
+  const [shelfUpdate, setShelfUpdtae] = useState(false);
 
   useEffect(() => {
-    consts.getAll().then(books => setAllBooks(books));
-  }, []);
+  consts.getAll().then(books => setAllBooks(books));
+  }, [AllBooks,shelfUpdate]);
 
-  const ChangeHandler = e => {
-    console.log("Changed " + e);
+  const ChangeHandler = newbook => {
+    // console.log(newbook + " Changed ");
+     setShelfUpdtae(true)
+    
   };
 
   return (
@@ -31,8 +32,8 @@ const ReadBook = () => {
                       backgroundImage: `url("${book.imageLinks.thumbnail}")`
                     }}
                   />
-                  <Test change={ChangeHandler} />
-                  {/* <ShelfChanger CategorySelect={ChangeHandler} /> */}
+
+                  <Shelf change={ChangeHandler} book={book}  />
                 </div>
 
                 <div className="book-title">{book.title}</div>
