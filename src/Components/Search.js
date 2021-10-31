@@ -79,36 +79,38 @@ const SearchBook = () => {
           </select>
         </div>
       </div>
-      <div className="search-books-results">
-        <ol className="books-grid">
-          {searchBooks.error !== "empty query" ? (
-            searchBooks.map(book => (
-              <li key={book.id}>
-                <div className="book">
-                  <div className="book-top">
-                    <div
-                      className="book-cover"
-                      style={{
-                        width: 128,
-                        height: 193,
-                        backgroundImage: book.imageLinks
-                          ? `url(${book.imageLinks.thumbnail})`
-                          : ""
-                      }}
-                    />
-                    <Shelf change={ChangeHandler} book={book} />
-                  </div>
+      {query !== "" &&
+        <div className="search-books-results">
+          <ol className="books-grid">
+            {searchBooks.error !== "empty query" ? (
+              searchBooks.map(book => (
+                <li key={book.id}>
+                  <div className="book">
+                    <div className="book-top">
+                      <div
+                        className="book-cover"
+                        style={{
+                          width: 128,
+                          height: 193,
+                          backgroundImage: book.imageLinks
+                            ? `url(${book.imageLinks.thumbnail})`
+                            : ""
+                        }}
+                      />
+                      <Shelf change={ChangeHandler} book={book} />
+                    </div>
 
-                  <div className="book-title">{book.title}</div>
-                  <div className="book-authors">{book.authors}</div>
-                </div>
-              </li>
-            ))
-          ) : (
-            <h2>Noting Found</h2>
-          )}
-        </ol>
-      </div>
+                    <div className="book-title">{book.title}</div>
+                    <div className="book-authors">{book.authors}</div>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <h2>Noting Found</h2>
+            )}
+          </ol>
+        </div>
+      }
     </div>
   );
 };
