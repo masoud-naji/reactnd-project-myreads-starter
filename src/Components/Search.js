@@ -6,19 +6,21 @@ import Shelf from "./shelf";
 const SearchBook = () => {
   const [query, setquery] = useState("");
   const [searchBooks, setSearchBooks] = useState([]);
+  const [AllBooks, setAllBooks] = useState([]);
+  const [shelfUpdate, setShelfUpdtae] = useState(false);
 
   useEffect(
     () => {
       const timeoutID = setTimeout(() => {
         if (query !== "") {
-          consts
-            .search(query)
-            .then(books =>
-              books !== null ? setSearchBooks(books) : console.log(books)
-            );
-        } else {
-          console.log("waiting");
+          consts.search(query).then(
+            books => books !== null && setSearchBooks(books)
+            // : console.log(books)
+          );
         }
+        // else {
+        //   console.log("waiting or not found");
+        // }
       }, 500);
       return () => {
         clearTimeout(timeoutID);
@@ -27,8 +29,16 @@ const SearchBook = () => {
     [query]
   );
 
-  const ChangeHandler = e => {
-    console.log("Changed " + e);
+  useEffect(
+    () => {
+      consts.getAll().then(books => setAllBooks(books));
+    },
+    [AllBooks, shelfUpdate]
+  );
+
+  const ChangeHandler = newbook => {
+    // console.log(newbook + " Changed ");
+    setShelfUpdtae(true);
   };
 
   const SearchHandler = e => {
@@ -40,7 +50,7 @@ const SearchBook = () => {
     <div className="search-books">
       <div className="search-books-bar">
         <div>
-          <Link to="/Library">
+          <Link to="/">
             <button className="close-search">Close</button>
           </Link>
         </div>
@@ -56,6 +66,7 @@ const SearchBook = () => {
 
         <div className="selectbook">
           <select className="link" onClick={e => setquery(e.target.value)}>
+            <option key={0}  defaultValue >Search Terms</option>
             {SearchTerms.map(searchTerm => (
               <option
                 className="listsearch"
@@ -85,7 +96,7 @@ const SearchBook = () => {
                           : ""
                       }}
                     />
-                    <Shelf change={ChangeHandler} />
+                    <Shelf change={ChangeHandler} book={book} />
                   </div>
 
                   <div className="book-title">{book.title}</div>

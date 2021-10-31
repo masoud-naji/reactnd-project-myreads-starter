@@ -14,10 +14,7 @@ const BooksApp = () => {
   return (
     <div className="app">
       <Switch>
-        <Route exact path="/">
-          <SearchBook />
-        </Route>
-        <Route path="/Library">
+      <Route exact path="/">
           <div className="list-books">
             {/* <div className="list-books-title"> */}
             <div className="list-books-title">
@@ -61,12 +58,16 @@ const BooksApp = () => {
               </div>
             </div>
             <div className="open-search">
-              <Link to="/">
+              <Link to="/SearchBook">
                 <button>Add a book</button>
               </Link>
             </div>
           </div>
         </Route>
+        <Route  path="/SearchBook">
+          <SearchBook />
+        </Route>
+      
       </Switch>
     </div>
   );

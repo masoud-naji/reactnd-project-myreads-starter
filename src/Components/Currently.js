@@ -6,14 +6,31 @@ const Currently = () => {
   const [AllBooks, setAllBooks] = useState([]);
   const [shelfUpdate, setShelfUpdtae] = useState(false);
 
-  useEffect(() => {
-    consts.getAll().then(books => setAllBooks(books));
-  }, [AllBooks,shelfUpdate]);
-  
+  // useEffect(() => {
+  //   consts.getAll().then(books => setAllBooks(books));
+  // }, [AllBooks,shelfUpdate]);
+
+  useEffect(
+    () => {
+      let isUnmount = false;
+      (async () => {
+        consts.getAll().then(books => {
+          if (!isUnmount) {
+            setAllBooks(books);
+          }
+        });
+      })();
+
+      return () => {
+        isUnmount = true;
+        setShelfUpdtae(false);
+      };
+    },
+    [AllBooks, shelfUpdate]
+  );
   const ChangeHandler = newbook => {
     // console.log(newbook + " Changed ");
     setShelfUpdtae(true);
- 
   };
   return (
     <div className="bookshelf">
@@ -33,7 +50,7 @@ const Currently = () => {
                         backgroundImage: `url("${book.imageLinks.thumbnail}")`
                       }}
                     />
-                     <Shelf change={ChangeHandler} book={book}  />
+                    <Shelf change={ChangeHandler} book={book} />
                   </div>
 
                   <div className="book-title">{book.title}</div>

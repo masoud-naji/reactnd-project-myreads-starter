@@ -5,11 +5,24 @@ import * as consts from "../BooksAPI";
 const WantRead = () => {
   const [AllBooks, setAllBooks] = useState([]);
   const [shelfUpdate, setShelfUpdtae] = useState(false);
+  useEffect(
+    () => {
+      let isUnmount = false;
+      (async () => {
+        consts.getAll().then(books => {
+          if (!isUnmount) {
+            setAllBooks(books);
+          }
+        });
+      })();
 
-  useEffect(() => {
-    consts.getAll().then(books => setAllBooks(books));
-  }, [AllBooks,shelfUpdate]);
-  
+      return () => {
+        isUnmount = true;
+        setShelfUpdtae(false);
+      };
+    },
+    [AllBooks, shelfUpdate]
+  );
   const ChangeHandler = newbook => {
     // console.log(newbook + " Changed ");
     setShelfUpdtae(true);

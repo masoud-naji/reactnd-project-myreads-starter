@@ -4,7 +4,7 @@ import * as consts from "../BooksAPI";
 const Shelf = props => {
   const changeHandler = e => {
     const newSelectedShelf = e.target.value;
-    console.log(newSelectedShelf);
+    // console.log(newSelectedShelf);
     props.change(props.book.id + "  " + newSelectedShelf);
     //   console.log(prop.change(prop.book + "  " + newSelectedShelf));
 
@@ -15,8 +15,9 @@ const Shelf = props => {
 
   return (
     <div className="book-shelf-changer">
-      {/* <select onChange={e => prop.change(e.target.value)}> */}
-      <select onChange={changeHandler}>
+      
+      {/* <select onChange={changeHandler}> */}
+      <select onChange={e=> {if (window.confirm('Are you sure you wish to Change Category?')) changeHandler(e)}}>
         <option className="listsearch" value="move" disabled defaultValue>
           Move to...
         </option>
