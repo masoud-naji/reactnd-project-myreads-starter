@@ -21,13 +21,12 @@ body {
   background-image: url(./Components/Require/Cup.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  
 }
 /* main page */
 
 .list-books-title {
   display: grid;
-
+  height: 5rem;
   grid-template-columns: 90% 10%;
   width: 100%;
   padding: 10px 0;
@@ -68,9 +67,7 @@ body {
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
   color: #880088;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-  
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bookshelf-books {
@@ -109,6 +106,7 @@ body {
   grid-template-columns: 10% 60% 30%; */
 
   position: fixed;
+  height: 5rem;
   width: 100%;
   top: 0;
   left: 0;
@@ -119,6 +117,9 @@ body {
 
 .search-books-input-wrapper {
   flex: 3;
+  vertical-align: middle;
+  padding-top: .75rem;
+  height: 5rem;
   background: #880088;
   border: none;
   outline: none;
@@ -138,8 +139,8 @@ body {
   display: block;
   top: 20px;
   left: 15px;
-  width: 50px;
-  height: 53px;
+  width: 3rem;
+  height: 5rem;
   background-image: url("./icons/arrow-back.svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -220,7 +221,6 @@ button:active {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-
 .book-shelf-changer select {
   width: 100%;
   height: 100%;
@@ -255,7 +255,7 @@ button:active {
   top: 0px;
   right: 0;
   width: 12rem;
-  height: 53px;
+  
   padding: 15px 10px;
   font-size: 1.25em;
   font-weight: bold;
@@ -271,9 +271,9 @@ button:active {
   top: 0px;
   right: 0;
   width: 12rem;
-  height: 53px;
+  height: 5rem;
   padding: 15px 10px;
-  font-size: .75em;
+  font-size: 1.25em;
   font-weight: bold;
   border: none;
   outline: none;
@@ -281,8 +281,6 @@ button:active {
   background: #880088;
   cursor: pointer;
 }
-
-
 
 .dropdown.active > .link,
 link:hover {
@@ -339,4 +337,16 @@ link:hover {
   z-index: 5;
 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
+}
+
+
+.searchimg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 50%;
+  width: 80rem;
+  height: 40rem;
+  margin: auto;
+
 }

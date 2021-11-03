@@ -2,44 +2,41 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as consts from "../BooksAPI";
 import Shelf from "./shelf";
+import Mountain from "../Components/Require/flat-mountains.svg"
 
-const SearchBook = () => {
+const SearchBook = ({ setUpdated, AllBooks }) => {
   const [query, setquery] = useState("");
   const [searchBooks, setSearchBooks] = useState([]);
-  const [AllBooks, setAllBooks] = useState([]);
-  const [shelfUpdate, setShelfUpdtae] = useState(false);
 
   useEffect(
     () => {
       const timeoutID = setTimeout(() => {
         if (query !== "") {
-          consts.search(query).then(
-            books => books !== null && setSearchBooks(books)
-            // : console.log(books)
-          );
+          consts.search(query).then(books => {
+            if (books !== null && books.length > 1) {
+              books = books.map(book => {
+                const bookOnShelf = AllBooks.find(({ id }) => book.id === id);
+                const shelf = bookOnShelf ? bookOnShelf.shelf : "none";
+                return {
+                  ...book,
+                  shelf
+                };
+              });
+              // setSearchBooks(books);
+              books !== null && setSearchBooks(books);
+            } else {
+              setSearchBooks([]);
+            }
+          });
         }
-        // else {
-        //   console.log("waiting or not found");
-        // }
       }, 500);
+
       return () => {
         clearTimeout(timeoutID);
       };
     },
     [query]
   );
-
-  useEffect(
-    () => {
-      consts.getAll().then(books => setAllBooks(books));
-    },
-    [AllBooks, shelfUpdate]
-  );
-
-  const ChangeHandler = newbook => {
-    // console.log(newbook + " Changed ");
-    setShelfUpdtae(true);
-  };
 
   const SearchHandler = e => {
     const SearchItem = e.target.value;
@@ -65,8 +62,10 @@ const SearchBook = () => {
         </div>
 
         <div className="selectbook">
-          <select className="link" onClick={e => setquery(e.target.value)}>
-            <option key={0}  defaultValue >Search Terms</option>
+          <select className="Slink" onClick={e => setquery(e.target.value)}>
+            <option key={0} defaultValue>
+              Search Terms
+            </option>
             {SearchTerms.map(searchTerm => (
               <option
                 className="listsearch"
@@ -79,7 +78,7 @@ const SearchBook = () => {
           </select>
         </div>
       </div>
-      {query !== "" &&
+      {query === "" ? <img src={Mountain} className="searchimg"/> : (
         <div className="search-books-results">
           <ol className="books-grid">
             {searchBooks.error !== "empty query" ? (
@@ -97,7 +96,7 @@ const SearchBook = () => {
                             : ""
                         }}
                       />
-                      <Shelf change={ChangeHandler} book={book} />
+                      <Shelf change={setUpdated} book={book} />
                     </div>
 
                     <div className="book-title">{book.title}</div>
@@ -110,7 +109,7 @@ const SearchBook = () => {
             )}
           </ol>
         </div>
-      }
+      )}
     </div>
   );
 };

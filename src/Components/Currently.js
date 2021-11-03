@@ -1,37 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Shelf from "./shelf";
-import * as consts from "../BooksAPI";
 
-const Currently = () => {
-  const [AllBooks, setAllBooks] = useState([]);
-  const [shelfUpdate, setShelfUpdtae] = useState(false);
+const Currently = ({ setUpdated, AllBooks }) => {
+ 
 
-  // useEffect(() => {
-  //   consts.getAll().then(books => setAllBooks(books));
-  // }, [AllBooks,shelfUpdate]);
-
-  useEffect(
-    () => {
-      let isUnmount = false;
-      (async () => {
-        consts.getAll().then(books => {
-          if (!isUnmount) {
-            setAllBooks(books);
-          }
-        });
-      })();
-
-      return () => {
-        isUnmount = true;
-        setShelfUpdtae(false);
-      };
-    },
-    [AllBooks, shelfUpdate]
-  );
-  const ChangeHandler = newbook => {
-    // console.log(newbook + " Changed ");
-    setShelfUpdtae(true);
-  };
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">Currently</h2>
@@ -50,7 +22,7 @@ const Currently = () => {
                         backgroundImage: `url("${book.imageLinks.thumbnail}")`
                       }}
                     />
-                    <Shelf change={ChangeHandler} book={book} />
+                    <Shelf change={setUpdated} book={book} />
                   </div>
 
                   <div className="book-title">{book.title}</div>
